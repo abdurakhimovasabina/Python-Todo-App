@@ -28,13 +28,40 @@ def show_tasks(todos: list[list[str, bool]]) -> None:
 
 
 def delete_task(todos: list[list[str, bool]]) -> None:
-    pass
-
+  show_tasks(todos)
+  try:
+      num = int(input("number to delete: "))
+      if 1 <= num <= len(todos):
+          todos.pop(num - 1)
+          print("deleted.")
+      else:
+          print("Invalid number.")
+  except:
+      print("Enter a valid number.")
+       
 
 def update_task(todos: list[list[str, bool]]) -> None:
-    pass
 
+    show_tasks(todos)
+    try:
+       num = int(input("number to update: "))
+       if 1 <= num <= len(todos):
+           task = todos[num - 1]
+           name = input("new name(leave blank to keep):").strip()
+           if name:
+               task[0] = name.capitalize()
+           status = input("Done?(y/n): ").lower()
+           if status == 'y':
+               task[1] == True
+           elif status == 'n':
+               task[1] = False
+           print("Updated.")
+       else:
+           print("Invalid number.")
+    except:
+        print("Enter a valid number.")
 
+           
 def main():
     todos: list[list[str, bool]] = [
         ["Yugirish", False],
